@@ -16,10 +16,12 @@
 
 
 -- Dumping database structure for db_buku
+DROP DATABASE IF EXISTS `db_buku`;
 CREATE DATABASE IF NOT EXISTS `db_buku` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `db_buku`;
 
 -- Dumping structure for table db_buku.buku
+DROP TABLE IF EXISTS `buku`;
 CREATE TABLE IF NOT EXISTS `buku` (
   `id_buku` int NOT NULL AUTO_INCREMENT,
   `judul_buku` varchar(100) NOT NULL,
@@ -31,16 +33,20 @@ CREATE TABLE IF NOT EXISTS `buku` (
   CONSTRAINT `kategori_buku` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_buku` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping data for table db_buku.buku: ~0 rows (approximately)
 
 -- Dumping structure for table db_buku.kategori_buku
+DROP TABLE IF EXISTS `kategori_buku`;
 CREATE TABLE IF NOT EXISTS `kategori_buku` (
   `id_kategori` int NOT NULL AUTO_INCREMENT,
   `nama_kategori` varchar(50) NOT NULL,
   PRIMARY KEY (`id_kategori`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping data for table db_buku.kategori_buku: ~0 rows (approximately)
 
 -- Dumping structure for table db_buku.peminjaman
+DROP TABLE IF EXISTS `peminjaman`;
 CREATE TABLE IF NOT EXISTS `peminjaman` (
   `id_peminjaman` int NOT NULL AUTO_INCREMENT,
   `nama_peminjam` varchar(50) NOT NULL,
@@ -51,7 +57,10 @@ CREATE TABLE IF NOT EXISTS `peminjaman` (
   CONSTRAINT `peminjaman_buku` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping data for table db_buku.peminjaman: ~0 rows (approximately)
+
 -- Dumping structure for table db_buku.pengembalian
+DROP TABLE IF EXISTS `pengembalian`;
 CREATE TABLE IF NOT EXISTS `pengembalian` (
   `id_pengembalian` int NOT NULL,
   `id_peminjaman` int NOT NULL,
@@ -60,6 +69,8 @@ CREATE TABLE IF NOT EXISTS `pengembalian` (
   UNIQUE KEY `id_peminjaman` (`id_peminjaman`),
   CONSTRAINT `pengembalian_buku` FOREIGN KEY (`id_peminjaman`) REFERENCES `peminjaman` (`id_peminjaman`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table db_buku.pengembalian: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
