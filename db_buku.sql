@@ -20,18 +20,6 @@ DROP DATABASE IF EXISTS `db_buku`;
 CREATE DATABASE IF NOT EXISTS `db_buku` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `db_buku`;
 
--- Dumping structure for table db_buku.buku
-DROP TABLE IF EXISTS `buku`;
-CREATE TABLE IF NOT EXISTS `buku` (
-  `id_buku` int NOT NULL AUTO_INCREMENT,
-  `judul_buku` varchar(100) NOT NULL,
-  `penulis` varchar(50) NOT NULL,
-  `tahun_terbit` year NOT NULL,
-  `id_kategori` int NOT NULL,
-  PRIMARY KEY (`id_buku`),
-  UNIQUE KEY `id_kategori` (`id_kategori`),
-  CONSTRAINT `kategori_buku` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_buku` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table db_buku.buku: ~0 rows (approximately)
 
@@ -45,6 +33,18 @@ CREATE TABLE IF NOT EXISTS `kategori_buku` (
 
 -- Dumping data for table db_buku.kategori_buku: ~0 rows (approximately)
 
+-- Dumping structure for table db_buku.buku
+DROP TABLE IF EXISTS `buku`;
+CREATE TABLE IF NOT EXISTS `buku` (
+  `id_buku` int NOT NULL AUTO_INCREMENT,
+  `judul_buku` varchar(100) NOT NULL,
+  `penulis` varchar(50) NOT NULL,
+  `tahun_terbit` year NOT NULL,
+  `id_kategori` int NOT NULL,
+  PRIMARY KEY (`id_buku`),
+  UNIQUE KEY `id_kategori` (`id_kategori`),
+  CONSTRAINT `kategori_buku` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_buku` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 -- Dumping structure for table db_buku.peminjaman
 DROP TABLE IF EXISTS `peminjaman`;
 CREATE TABLE IF NOT EXISTS `peminjaman` (
