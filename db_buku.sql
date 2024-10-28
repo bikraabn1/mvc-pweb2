@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table db_buku.buku: ~0 rows (approximately)
+DELETE FROM `buku`;
 
 -- Dumping structure for table db_buku.kategori_buku
 CREATE TABLE IF NOT EXISTS `kategori_buku` (
@@ -41,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `kategori_buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table db_buku.kategori_buku: ~0 rows (approximately)
+DELETE FROM `kategori_buku`;
 
 -- Dumping structure for table db_buku.peminjaman
 CREATE TABLE IF NOT EXISTS `peminjaman` (
@@ -54,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `peminjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table db_buku.peminjaman: ~0 rows (approximately)
+DELETE FROM `peminjaman`;
 
 -- Dumping structure for table db_buku.pengembalian
 CREATE TABLE IF NOT EXISTS `pengembalian` (
@@ -66,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `pengembalian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table db_buku.pengembalian: ~0 rows (approximately)
+DELETE FROM `pengembalian`;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
