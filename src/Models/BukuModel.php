@@ -2,7 +2,7 @@
 
 use App\Models\DB;
 
-class LoginModel extends DB{
+class BukuModel extends DB{
     public function  __construct(){
         parent::__construct();
     }

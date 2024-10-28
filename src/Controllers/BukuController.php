@@ -2,7 +2,7 @@
 
 use App\Controller;
 
-class LoginController extends Controller{
+class BukuController extends Controller{
     public function index(){
         
     }

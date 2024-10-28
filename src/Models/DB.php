@@ -5,7 +5,7 @@ class DB{
     private $host = "127.0.0.1";
     private $user = "root";
     private $password = "";
-    private $db = "db_gweh";
+    private $db = "db_buku";
     protected $conn;
 
     public function  __construct(){
