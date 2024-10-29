@@ -18,5 +18,4 @@ class BukuModel extends DB{
         }
         return $books;
     }
-
 }
