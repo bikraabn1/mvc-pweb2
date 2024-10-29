@@ -19,4 +19,15 @@ class BukuModel extends DB{
         }
         return $books;
     }
+
+    public function getKategori(){
+        $sql =  "SELECT nama_kategori FROM buku JOIN kategori_buku ON  buku.id_kategori = kategori_buku.id_kategori";
+
+        $result = $this->conn->query($sql);
+        $books = [];
+        while ($row = $result->fetch_assoc()) {
+            $books[] = $row; 
+        }
+        return $books;
+    }
 }

@@ -14,7 +14,10 @@ class BukuController extends Controller{
         $this->render('index', ['books' => $books]);
     }
 
-    public function add(){
-        // $this->render('add');
+    public function addUser(){
+        if(isset($_POST['submit'])){
+            echo "bisa incik bos";
+        }
+        $this->render('newUser');
     }
 }
