@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="output.css">
 </head>
+<?php include "Navbar.php" ?>
 <body>
     <h1>Tambah Buku Baru</h1>
     <form method="post" action="/newBook">
