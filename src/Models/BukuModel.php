@@ -10,11 +10,12 @@ class BukuModel extends DB{
     }
 
     public function getDatas(){
-        $sql =  "SELECT * FROM buku";
+        $sql =  "SELECT * FROM buku JOIN kategori_buku ON  buku.id_kategori = kategori_buku.id_kategori";
+
         $result = $this->conn->query($sql);
         $books = [];
         while ($row = $result->fetch_assoc()) {
-            $books[] = $row; // Menambahkan setiap baris ke dalam array
+            $books[] = $row; 
         }
         return $books;
     }
