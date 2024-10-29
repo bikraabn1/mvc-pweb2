@@ -14,10 +14,14 @@ class BukuController extends Controller{
         $this->render('index', ['books' => $books]);
     }
 
-    public function addUser(){
+    public function addBook(){
+        $category = $this->BukuModel->getKategori();
+
+        $this->render('/newBook',['category' => $category]);
+
         if(isset($_POST['submit'])){
-            echo "bisa incik bos";
+            $books = [$_POST['title'], $_POST['publisher'], $_POST['year']];
+            $this->BukuModel->setDatas($books);
         }
-        $this->render('newUser');
     }
 }

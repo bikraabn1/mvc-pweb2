@@ -3,8 +3,6 @@
 use App\Config\DB;
 
 class BukuModel extends DB{
-    protected $buku;
-
     public function  __construct(){
         parent::__construct();
     }
@@ -29,5 +27,11 @@ class BukuModel extends DB{
             $books[] = $row; 
         }
         return $books;
+    }
+
+    public function setDatas($data){
+        $books = implode("', '", $data);
+        $sql = "INSERT INTO buku (judul_buku, penulis, tahun_terbit, id_kategori) VALUES ('$books',1)";
+        $this->conn->query($sql);
     }
 }

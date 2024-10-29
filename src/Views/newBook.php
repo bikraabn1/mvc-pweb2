@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Tambah Buku Baru</h1>
-    <form method="post" action="/newUser">
+    <form method="post" action="/newBook">
         <label for="title">Judul Buku</label>
         <input type="text" name="title" id="title" required>
 
