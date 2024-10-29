@@ -1,4 +1,4 @@
-<?php namespace App\Models;
+<?php namespace App\Config;
 
 
 class DB{
@@ -16,7 +16,5 @@ class DB{
     }
 
     public function create(){
-        $sql = "INSERT INTO user (name, password) VALUES";
     }
-
 }
