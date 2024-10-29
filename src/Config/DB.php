@@ -2,10 +2,10 @@
 
 
 class DB{
-    private $host = "127.0.0.1";
-    private $user = "root";
-    private $password = "";
-    private $db = "db_buku";
+    private $host = "mdi.my.id";
+    private $user = "basdeat2_usr2";
+    private $password = 'Ft($kWTkCha_D5jv2x';
+    private $db = "basdeat2_klp2";
     protected $conn;
 
     public function  __construct(){
