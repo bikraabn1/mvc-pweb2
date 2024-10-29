@@ -3,7 +3,7 @@
 use App\Config\DB;
 
 class BukuModel extends DB{
-    protected $buku, $judul, $penulis, $tahun_terbit;
+    protected $buku;
 
     public function  __construct(){
         parent::__construct();
@@ -11,12 +11,12 @@ class BukuModel extends DB{
 
     public function getDatas(){
         $sql =  "SELECT * FROM buku";
-        $query = $this->db->query($sql);
-        $this->buku = $query;
-        return $this->buku;
+        $result = $this->conn->query($sql);
+        $books = [];
+        while ($row = $result->fetch_assoc()) {
+            $books[] = $row; // Menambahkan setiap baris ke dalam array
+        }
+        return $books;
     }
 
-    public function getJudul(){
-        
-    }
 }
