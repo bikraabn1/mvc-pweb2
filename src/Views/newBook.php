@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="output.css">
-    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php include "Navbar.php" ?>
 
@@ -35,8 +35,9 @@
 </body>
 
 <script>
-    const submitHandler = (event) => {
+    const submitHandler = (e) => {
         const input = document.getElementById('year')
+        e.preventDefault()
 
         if (input.value < 1900 || input.value > 2100) {
             Swal.fire({
@@ -54,7 +55,6 @@
             icon: 'success',
             confirmButtonText: 'OK'
         })
-        
     }
 </script>
 

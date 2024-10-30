@@ -40,8 +40,8 @@ class BukuModel extends DB{
         $this->conn->query($sql);
     }
 
-    public function updateData($data, $id){
-        $sql = "UPDATE buku SET judul_buku = $data[0], penulis = $data[1], tahun_terbit = $data[2] , id_kategori = $data[3]) where id_buku = $id";
+    public function updateData($data){
+        $sql = "UPDATE buku SET judul_buku = '". $data[0] ."', penulis = '" .$data[1]. "', tahun_terbit = '". $data[2] ."' , id_kategori = '". $data[3] ."' WHERE id_buku = '" .$data[4]. "'";
         $this->conn->query($sql);
     }
 }

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manajemen Buku</title>
   <link rel="stylesheet" href="output.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php include "Navbar.php" ?>
 
@@ -36,12 +37,12 @@
               <td><?= $book['nama_kategori'] ?></td>
               <td>
                   <input type="hidden" name="id_buku" value="<?= $book['id_buku'] ?>">
-                  <input type="hidden" name="judul_buku" value="<?= $book['id_buku'] ?>">
-                  <input type="hidden" name="penulis" value="<?= $book['id_buku'] ?>">
-                  <input type="hidden" name="tahun_terbit" value="<?= $book['id_buku'] ?>">
-                  <input type="hidden" name="nama_kategori" value="<?= $book['id_buku'] ?>">
+                  <input type="hidden" name="judul_buku" value="<?= $book['judul_buku'] ?>">
+                  <input type="hidden" name="penulis" value="<?= $book['penulis'] ?>">
+                  <input type="hidden" name="tahun_terbit" value="<?= $book['tahun_terbit'] ?>">
+                  <input type="hidden" name="nama_kategori" value="<?= $book['nama_kategori'] ?>">
                   <ul class="flex gap-2 justify-center">
-                    <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updateData?id=<?= $book['id_buku']?>">Update</a></button></li>
+                    <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updateData?id=<?= $book['id_buku']?>&judul_buku=<?= $book['judul_buku']?>&penulis=<?=$book['penulis']?>&tahun_terbit=<?=$book['tahun_terbit']?>&nama_kategori=<?=$book['nama_kategori']?>">Update</a></button></li>
                     <li><button type="submit" name="delete" class="btn btn-error btn-sm">Delete</button></li>
                   </ul>
                 </td>

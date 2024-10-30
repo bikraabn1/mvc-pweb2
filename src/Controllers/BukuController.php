@@ -23,7 +23,7 @@ class BukuController extends Controller{
             $year = $_POST['year'];
 
             if ($year < 1900 || $year > 2100) {
-                $this->render('/newBook', ['category' => $category]);
+                $this->render('/newBook');
                 return;
             }
 
@@ -49,23 +49,30 @@ class BukuController extends Controller{
 
     public function updateBook(){
         $category = $this->model->getKategori();
+        $id = $_GET['id'];
+        $title = $_GET['judul_buku'];
+        $author = $_GET['penulis'];
+        $getYear = $_GET['tahun_terbit'];
+        $category_name = $_GET['nama_kategori'];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+        $datas = [$id, $title, $author, $getYear, $category_name];
+
+        $this->render('updateData', ['datas' => $datas, 'category' => $category]);
+    }
+
+    public function postBook(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+            $id = $_POST['id_buku'];
+            $title = $_POST['title'];
+            $author = $_POST['author'];
             $year = $_POST['year'];
-            $id =  $_POST['id_buku'];
+            $category = $_POST['category'];
 
+            $data = [$title, $author, $year, $category,$id];
 
-            if ($year < 1900 || $year > 2100) {
-                $this->render('/updateData', ['category' => $category]);
-                return;
-            }
-
-            $books = [$_POST['title'], $_POST['publisher'], $_POST['year'], $_POST['category']];
-            $this->model->updateData($books, $id);
+            $this->model->updateData($data);
             header("Location: /");
             return;
         }
-
-        $this->render('/updateData', ['category' => $category]);
     }
 }
