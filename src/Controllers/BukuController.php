@@ -20,6 +20,12 @@ class BukuController extends Controller{
         $this->render('/newBook',['category' => $category]);
 
         if(isset($_POST['submit'])){
+            $year = $_POST['year'];
+            if($year <  1900 || $year > 2020){
+                echo "<script>alert('tahunnya yang bener wak')</script>";
+                return;
+            }
+
             $books = [$_POST['title'], $_POST['publisher'], $_POST['year'], $_POST['category']];
             $this->model->setDatas($books);
         }
