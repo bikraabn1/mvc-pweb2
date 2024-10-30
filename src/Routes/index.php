@@ -4,7 +4,7 @@ use App\Router;
 
 $router = new Router();
 $router->get('/',  BukuController::class, 'index');
-$router->post('/', BukuController::class, 'deleteBook');
+$router->post('/deleteBook', BukuController::class, 'deleteBook');
 
 $router->get('/newBook', BukuController::class, 'addBook');
 $router->post('/newBook', BukuController::class, 'addBook');

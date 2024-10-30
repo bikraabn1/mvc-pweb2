@@ -13,7 +13,7 @@
 <body>
     <h1 class="font-semibold self-center text-3xl text-center my-10">Tambah Buku Baru</h1>
 
-    <form method="post" action="/newBook" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl" onsubmit="submitHandler()">
+    <form method="post" action="/newBook" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl" onsubmit='submitHandler()'>
         <label for="title">Judul Buku</label>
         <input class="input input-bordered w-full" placeholder="Masukkan Judul Buku" type="text" name="title" id="title" required>
 
@@ -37,8 +37,6 @@
 <script>
     const submitHandler = (e) => {
         const input = document.getElementById('year')
-        e.preventDefault()
-
         if (input.value < 1900 || input.value > 2100) {
             Swal.fire({
                 title: 'Error!',
@@ -55,6 +53,7 @@
             icon: 'success',
             confirmButtonText: 'OK'
         })
+        e.preventDefault()
     }
 </script>
 
