@@ -31,7 +31,17 @@ class BukuModel extends DB{
 
     public function setDatas($data){
         $books = implode("', '", $data);
-        $sql = "INSERT INTO buku (judul_buku, penulis, tahun_terbit, id_kategori) VALUES ('$books',1)";
+        $sql = "INSERT INTO buku (judul_buku, penulis, tahun_terbit, id_kategori) VALUES ('$books')";
+        $this->conn->query($sql);
+    }
+    
+    public function deleteData($id){
+        $sql = "DELETE FROM buku WHERE id_buku = '$id'";
+        $this->conn->query($sql);
+    }
+
+    public function updateData($data, $id){
+        $sql = "UPDATE buku SET judul_buku = $data[0], penulis = $data[1], tahun_terbit = $data[2] , id_kategori = $data[3]) where id_buku = $id";
         $this->conn->query($sql);
     }
 }
