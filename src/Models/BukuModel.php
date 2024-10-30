@@ -31,7 +31,7 @@ class BukuModel extends DB{
 
     public function setDatas($data){
         $books = implode("', '", $data);
-        $sql = "INSERT INTO buku (judul_buku, penulis, tahun_terbit, id_kategori) VALUES ('$books',1)";
+        $sql = "INSERT INTO buku (judul_buku, penulis, tahun_terbit, id_kategori) VALUES ('$books')";
         $this->conn->query($sql);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Controller;
 use App\Models\BukuModel;
+use Throwable;
 
 class BukuController extends Controller{
     public $model;
@@ -11,7 +12,11 @@ class BukuController extends Controller{
 
     public function index(){
         $books = $this->model->getDatas();
-        $this->render('index', ['books' => $books]);
+        if(sizeof($books)  > 0){
+            $this->render('index', ['books' => $books]);
+            return;
+        }
+        $this->render('indexnotable');
     }
 
     public function addBook(){
@@ -20,6 +25,7 @@ class BukuController extends Controller{
         $this->render('/newBook',['category' => $category]);
 
         if(isset($_POST['submit'])){
+
             $books = [$_POST['title'], $_POST['publisher'], $_POST['year'], $_POST['category']];
             $this->model->setDatas($books);
         }

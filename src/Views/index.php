@@ -12,7 +12,7 @@
   <main>
     <h1 class="text-center text-3xl font-semibold my-14">List Buku Terbaru 2024</h1>
     <div class="overflow-x-auto">
-      <table class="table table-md border border-1 w-[80%] mx-auto text-center">
+      <table class="table table-md border border-1 w-[80%] mx-auto text-center ">
         <thead>
           <tr>
             <th>No</th>
