@@ -29,7 +29,4 @@ class BukuController extends Controller{
 
     }
 
-    public function editBook(){
-
-    }
 }
