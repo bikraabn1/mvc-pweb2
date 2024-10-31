@@ -2,6 +2,7 @@
 
 use App\Controllers\BukuController;
 use App\Controllers\KategoriController;
+use App\Controllers\PeminjamanController;
 use App\Router;
 
 $router = new Router();
@@ -22,4 +23,11 @@ $router->post('/kategori', KategoriController::class, 'deleteCategory');
 $router->get('/updatekategori', KategoriController::class, 'updateCategory');
 $router->post('/updatekategori', KategoriController::class, 'postCategory');
 
+
+$router = new Router();
+$router->get('/peminjaman',  PeminjamanController::class, 'index');
+$router->get('/newPinjam', PeminjamanController::class, 'addPeminjaman');
+$router->post('/newPinjam', PeminjamanController::class, 'addPeminjaman');
+$router->get('/updatePinjam', PeminjamanController::class, 'updatePeminjaman');
+$router->post('/updatePinjam', PeminjamanController::class, 'postPeminjaman');
 $router->dispatch();
