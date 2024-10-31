@@ -41,14 +41,13 @@
       <li><a href="/">Home</a></li>
       <li>
         <details>
-          <summary>More</summary>
-          <ul class="bg-base-100 rounded-lg p-2 w-max absolute right-0">
+          <summary>Action</summary>
+          <ul class="bg-base-100 rounded-t-none p-2 w-max absolute right-0">
             <li><a href="/newBook">Tambah Buku Baru</a></li>
-            <li><a>Link 2</a></li>
+            <li><a href="/newCategory">Tambah Kategori</a></li>
           </ul>
         </details>
       </li>
     </ul>
-
   </div>
 </nav>
