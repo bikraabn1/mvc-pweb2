@@ -1,4 +1,4 @@
-<nav class="flex flex-row justify-between items-center p-4">
+<nav class="flex flex-row justify-between items-center p-4 bg-base-300">
   <div>
     <a class="btn btn-ghost text-xl">Manajemen Buku</a>
   </div>
@@ -42,7 +42,7 @@
       <li>
         <details>
           <summary>More</summary>
-          <ul class="bg-base-100 rounded-t-none p-2 w-max absolute right-0">
+          <ul class="bg-base-100 rounded-lg p-2 w-max absolute right-0">
             <li><a href="/newBook">Tambah Buku Baru</a></li>
             <li><a>Link 2</a></li>
           </ul>

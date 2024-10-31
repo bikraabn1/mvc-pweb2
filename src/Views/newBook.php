@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="output.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php include "Navbar.php" ?>
+
 <body>
     <h1 class="font-semibold self-center text-3xl text-center my-10">Tambah Buku Baru</h1>
-    
-    <form method="post" action="/newBook" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl">
+
+    <form method="post" action="/newBook" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl" onsubmit='submitHandler()'>
         <label for="title">Judul Buku</label>
         <input class="input input-bordered w-full" placeholder="Masukkan Judul Buku" type="text" name="title" id="title" required>
 
@@ -22,8 +25,8 @@
 
         <label for="category">Kategori Buku</label>
         <select class="select select-bordered" name="category" id="category">
-            <?php foreach($category as $data) : ?>
-                <option value="<?= $data['id_kategori']?>"> <?= $data['nama_kategori'] ?> </option>
+            <?php foreach ($category as $data) : ?>
+                <option value="<?= $data['id_kategori'] ?>"> <?= $data['nama_kategori'] ?> </option>
             <?php endforeach ?>
         </select>
 

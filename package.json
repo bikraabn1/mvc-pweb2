@@ -11,7 +11,8 @@
   "description": "",
   "dependencies": {
     "concurrently": "^9.0.1",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "sweetalert2": "^11.14.4"
   },
   "devDependencies": {
     "daisyui": "^4.12.14",
