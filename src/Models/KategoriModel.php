@@ -22,4 +22,16 @@ class KategoriModel extends DB{
         $sql = "INSERT INTO kategori_buku (nama_kategori) VALUES ('$categories')";
         $this->conn->query($sql);
     }
+
+    public function deleteData($id){
+        $sql = "DELETE FROM kategori_buku WHERE id_kategori = $id";
+        $this->conn->query($sql);
+    }
+
+    public function updateData($data){
+        $id = $data[0];
+        $name = $data[1];
+        $sql = "UPDATE kategori_buku SET nama_kategori = '$name' WHERE id_kategori = $id";
+        $this->conn->query($sql);
+    }
 }
