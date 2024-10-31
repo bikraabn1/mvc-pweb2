@@ -33,28 +33,4 @@
         <button class="btn w-fit self-center my-5" type="submit" name="submit" id="submit">Tambah Buku</button>
     </form>
 </body>
-
-<script>
-    const submitHandler = (e) => {
-        const input = document.getElementById('year')
-        if (input.value < 1900 || input.value > 2100) {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Mohon Isi Tahun 1900 - 2100',
-                icon: 'error',
-                confirmButtonText: 'OK'
-            })
-            return
-        }
-
-        Swal.fire({
-            title: 'Success!!',
-            text: 'Data Berhasil Ditambahkan',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        })
-        e.preventDefault()
-    }
-</script>
-
 </html>

@@ -28,7 +28,7 @@
         </thead>
         <tbody>
           <?php foreach ($books as $book): ?>
-            <form action="/deleteBook" method="post" id="delete-form">
+            <form action="/" method="post" id="delete-form">
             <tr>
               <th><?= $no++ ?></th>
               <td><?= $book['judul_buku'] ?></td>
@@ -43,7 +43,7 @@
                   <input type="hidden" name="nama_kategori" value="<?= $book['nama_kategori'] ?>">
                   <ul class="flex gap-2 justify-center">
                     <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updateData?id=<?= $book['id_buku']?>&judul_buku=<?= $book['judul_buku']?>&penulis=<?=$book['penulis']?>&tahun_terbit=<?=$book['tahun_terbit']?>&nama_kategori=<?=$book['nama_kategori']?>">Update</a></button></li>
-                    <li><button name="delete" class="btn btn-error btn-sm" onclick="confirmDelete(<?= $book['id_buku'] ?>)">Delete</button> </li>
+                    <li><button type="submit" name="delete" class="btn btn-error btn-sm" onclick="confirmDelete(this)">Delete</button> </li>
                   </ul>
                 </td>
               </tr>
@@ -55,17 +55,27 @@
   </main>
 </body>
 <script> 
-  function confirmDelete(itemID){ 
-    Swal.fire(
-      { 
-      title: 'Are you sure?', 
-      text: "You won't be able to revert this!",
-      icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!' })
-        .then((result) => { 
-          if (result.isConfirmed){ 
-            document.getElementById('delete-form').submit(); 
-        } }); } 
+    // function confirmDelete(button) {
+    //     const form = button.closest('form'); // Get the closest form to the button
+    //     const deleteInput = document.createElement('input');
+    //     deleteInput.type = 'hidden';
+    //     deleteInput.name = 'delete';
+    //     deleteInput.value = 'delete';
+        
+    //     Swal.fire({
+    //       title: 'Are you sure?',
+    //       text: "You won't be able to revert this!",
+    //       icon: 'warning',
+    //       showCancelButton: true,
+    //       confirmButtonColor: '#3085d6',
+    //       cancelButtonColor: '#d33',
+    //       confirmButtonText: 'Yes, delete it!'
+    //     }).then((result) => {
+    //       if (result.isConfirmed) {
+    //         form.appendChild(deleteInput);
+    //         form.submit();
+    //       }
+    //     });
+    // }
 </script>
 </html>
