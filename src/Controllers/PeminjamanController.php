@@ -32,7 +32,7 @@ class PeminjamanController extends Controller{
             return;
         }
 
-        $this->render('/newPeminjaman', ['peminjaman' => $peminjaman]);
+        $this->render('/newPinjam', ['books' => $books]);
 
         
     }
