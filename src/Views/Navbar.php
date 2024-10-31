@@ -47,6 +47,7 @@
             <li><a href="/newCategory">Tambah Kategori</a></li>
             <li><a href="/newPinjam">Pinjam Buku</a></li>
             <li><a href="/peminjaman">Peminjaman</a></li>
+            <li><a href="/newPengembalian">Pengembalian Buku</a></li>
             <li><a>Link 2</a></li>
           </ul>
         </details>

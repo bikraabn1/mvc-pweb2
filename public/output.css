@@ -1932,10 +1932,13 @@ html {
   display: grid;
 }
 
+<<<<<<< HEAD
 .hidden {
   display: none;
 }
 
+=======
+>>>>>>> f6cf18de9e9bd77660c333d2cd54c2f73697ca21
 .h-\[20rem\] {
   height: 20rem;
 }
@@ -1996,10 +1999,17 @@ html {
 
 .gap-10 {
   gap: 2.5rem;
+<<<<<<< HEAD
 }
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+=======
+>>>>>>> f6cf18de9e9bd77660c333d2cd54c2f73697ca21
 }
 
 .gap-2 {
@@ -2024,8 +2034,14 @@ html {
   border-radius: 1rem;
 }
 
+<<<<<<< HEAD
 .rounded-lg {
   border-radius: 0.5rem;
+=======
+.rounded-t-none {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+>>>>>>> f6cf18de9e9bd77660c333d2cd54c2f73697ca21
 }
 
 .border {

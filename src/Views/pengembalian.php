@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manajemen Buku</title>
+  <title>Data Pengambalian Buku</title>
   <link rel="stylesheet" href="output.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -13,28 +13,27 @@
 <body>
   <?php $no = 1 ?>
   <main>
-    <h1 class="text-center text-3xl font-semibold my-14">List Buku Terbaru 2024</h1>
+    <h1 class="text-center text-3xl font-semibold my-14">List Pengembalian Buku</h1>
     <div class="overflow-x-auto">
       <table class="table table-md border border-1 w-[80%] mx-auto text-center ">
         <thead>
           <tr>
             <th>No</th>
-            <td>Judul Buku</td>
-            <td>Penulis</td>
-            <td>Tahun Terbit</td>
-            <td>Kategori</td>
+            <td>Tanggal Pengambalian</td>
+            <td>Tanggal Peminjaman</td>
+            <td>Nama Peminjam</td>
+            <td>Jumlah Denda</td>
             <td>Modifier</td>
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($books as $book): ?>
-            <form action="/" method="post" id="delete-form">
+          <?php foreach($data as $d): ?>
             <tr>
               <th><?= $no++ ?></th>
-              <td><?= $book['judul_buku'] ?></td>
-              <td><?= $book['penulis'] ?></td>
-              <td><?= $book['tahun_terbit'] ?></td>
-              <td><?= $book['nama_kategori'] ?></td>
+              <td><?= $d['tanggal_pengembalian'] ?></td>
+              <td><?= $d['tanggal_peminjaman'] ?></td>
+              <td><?= $d['nama_peminjam'] ?></td>
+              <td><?= $d['jumlah_denda'] ?></td>
               <td>
                   <input type="hidden" name="id_buku" value="<?= $book['id_buku'] ?>">
                   <input type="hidden" name="judul_buku" value="<?= $book['judul_buku'] ?>">
