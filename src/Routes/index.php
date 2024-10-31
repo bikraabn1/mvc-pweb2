@@ -1,9 +1,9 @@
 <?php namespace App\Routes;
-use App\Controllers\BukuController;
+use App\Controllers\PeminjamanController;
 use App\Router;
 
 $router = new Router();
-$router->get('/',  BukuController::class, 'index');
-$router->get('/newBook', BukuController::class, 'addBook');
-$router->post('/newBook', BukuController::class, 'addBook');
+$router->get('/',  PeminjamanController::class, 'index');
+$router->get('/newPinjam', PeminjamanController::class, 'addPeminjaman');
+$router->post('/newPinjam', PeminjamanController::class, 'addPeminjaman');
 $router->dispatch();
