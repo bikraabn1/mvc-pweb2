@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controller;
 use App\Models\BukuModel;
-use Throwable;
 
 class BukuController extends Controller
 {
