@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
-    <title>Update Peminjaman Buku</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Peminjaman</title>
+    <link rel="stylesheet" href="output.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<?php include "Navbar.php" ?>
+
 <body>
-    <h1>Update Peminjaman Buku</h1>
-    <form method="POST" action="/postPeminjaman">
-        <input type="hidden" name="id_peminjaman" value="<?= $datas[0] ?>">
+    <h1 class="font-semibold self-center text-3xl text-center my-10">Tambah Peminjaman</h1>
 
-        <label>Nama Peminjam:</label>
-        <input type="text" name="name" value="<?= $datas[1] ?>" required><br><br>
+    <form method="post" action="/newPinjam" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl" onsubmit='submitHandler()'>
+        <label for="name">Nama Peminjam</label>
+        <input class="input input-bordered w-full" placeholder="Masukkan Nama" type="text" name="name" id="name" required>
 
-        <label>Tanggal Peminjaman:</label>
-        <input type="date" name="date" value="<?= $datas[2] ?>" required><br><br>
+        <label for="date">Tanggal Peminjaman</label>
+        <input class="input input-bordered w-full" type="date" name="date" id="date" required>
 
-        <label>ID Buku:</label>
-        <select name="books" required>
-            <?php foreach ($peminjaman as $pinjam): ?>
-                <option value="<?= $pinjam['id_buku'] ?>" 
-                <?= ($datas[3] == $pinjam['id_buku']) ? 'selected' : '' ?>>
-                <?= $pinjam['judul_buku'] ?></option>
-            <?php endforeach; ?>
-        </select><br><br>
+        <label for="year">Tahun Terbit</label>
+        <input class="input input-bordered w-full" placeholder="Masukkan Tahun Terbit" maxlength="4" inputmode="numeric" type="text" name="year" id="year" required>
 
-        <input type="submit" name="update" value="Simpan Perubahan">
+        <label for="category">Judul Buku</label>
+        <select class="select select-bordered" name="books" id="books">
+            <?php foreach ($books as $data) : ?>
+                <option value="<?= $data['id_buku'] ?>"> <?= $data['judul_buku'] ?> </option>
+            <?php endforeach ?>
+        </select>
+
+        <button class="btn w-fit self-center my-5" type="submit" name="submit" id="submit">Tambah Peminjaman</button>
     </form>
 </body>
 </html>
