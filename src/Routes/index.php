@@ -15,6 +15,4 @@ $router->post('/kategori', KategoriController::class, 'deleteCategory');
 $router->get('/updatekategori', KategoriController::class, 'updateCategory');
 $router->post('/updatekategori', KategoriController::class, 'postCategory');
 
-
-
 $router->dispatch();

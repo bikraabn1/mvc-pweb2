@@ -29,9 +29,7 @@ class KategoriModel extends DB{
     }
 
     public function updateData($data){
-        $id = $data[0];
-        $name = $data[1];
-        $sql = "UPDATE kategori_buku SET nama_kategori = '$name' WHERE id_kategori = $id";
+        $sql = "UPDATE kategori_buku SET nama_kategori = '$data[1]' WHERE id_kategori = $data[0]";
         $this->conn->query($sql);
     }
 }

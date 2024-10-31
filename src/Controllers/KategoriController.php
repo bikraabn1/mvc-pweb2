@@ -33,32 +33,24 @@ class KategoriController extends Controller{
     }
 
     public function updateCategory(){
-        $category = $this->KategoriModel->getDatas();
-        if (!isset($_GET['id']) && isset($_GET['name'])) {
-        $category_id = $_GET['id'];
-        $category_name = $_GET['name'];
+        $id = $_GET['id'];
+        $cat = $_GET['cat'];
 
-        $data = [
-            'id_kategori' => $category_id,
-            'nama_kategori' => $category_name
-        ];
-    }   else{
-            header('Location: /kategori');
-            return;
-        }
+        $datas = [$id, $cat]; 
 
-        $this->render('/updatekategori', ['category' => $category, 'data' => $data]);
+        $this->render('updatekategori', ['datas' => $datas]);
     }
 
     public function postCategory(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
             $id = $_POST['id_kategori'];
-            $name = $_POST['nama_kategori'];
+            $cat = $_POST['nama_kategori'];
 
-            $data = [$id, $name];
+            $datas = [$id, $cat];
 
-            $this->KategoriModel->updateData($data);
-            header('Location: /kategori');
+            $this->KategoriModel->updateData($datas);
+            $this->render('updatekategori', ['datas' => $this->KategoriModel->getDatas()]);
+            header(header: 'Location: /kategori');
             return;
         }
     }

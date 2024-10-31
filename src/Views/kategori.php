@@ -29,8 +29,8 @@
                 <input type="hidden" name="id_kategori" value="<?= $category['id_kategori'] ?>">
                 <input type="hidden" name="nama_kategori" value="<?= $category['nama_kategori'] ?>">
                 <ul class="flex gap-2 justify-center">
-                  <li><a href="/updatekategori?id=<?= $category['id_kategori'] ?>&name=<?= $category['nama_kategori'] ?>" class="btn btn-success btn-sm">Update</a></li>
-                  <li><button type="submit" name="delete" class="btn btn-error btn-sm">Delete</button></li>
+                  <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updatekategori?id=<?= $category['id_kategori']?>&cat=<?= $category['nama_kategori']?>">Update</a></button></li>
+                  <li><button name="delete" class="btn btn-error btn-sm" onclick="confirmDelete(<?= $category['id_kategori'] ?>)">Delete</button></li>
                 </ul>
               </td>
             </tr>
@@ -40,4 +40,18 @@
     </div>
   </main>
 </body>
+<script> 
+  function confirmDelete(itemID){ 
+    Swal.fire(
+      { 
+      title: 'Are you sure?', 
+      text: "You won't be able to revert this!",
+      icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!' })
+        .then((result) => { 
+          if (result.isConfirmed){ 
+            document.getElementById('delete-form').submit(); 
+        } }); } 
+</script>
 </html>
