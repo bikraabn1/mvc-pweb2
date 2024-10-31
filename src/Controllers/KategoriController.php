@@ -25,10 +25,11 @@ class KategoriController extends Controller{
     }
     
     public function deleteCategory(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_kategori'])) {
             $id = $_POST['id_kategori'];
             $this->KategoriModel->deleteData($id);
             header('Location: /kategori');
+            exit();
         }
     }
 
