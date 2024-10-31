@@ -26,21 +26,21 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($Peminjaman as $pinjam): ?>
-            <form action="/deletePeminjaman" method="post" id="delete-form">
+          <?php foreach ($peminjaman as $pinjam): ?>
+            <form method="post" action="/peminjaman">
             <tr>
               <th><?= $no++ ?></th>
               <td><?= $pinjam['nama_peminjam'] ?></td>
               <td><?= $pinjam['tanggal_peminjaman'] ?></td>
               <td><?= $pinjam['judul_buku'] ?></td>
               <td>
-                  <input type="hidden" name="id_peminjaman" value="<?= $book['id_peminjaman'] ?>">
-                  <input type="hidden" name="nama_peminjam" value="<?= $book['nama_peminjam'] ?>">
-                  <input type="hidden" name="tanggal_peminjaman" value="<?= $book['tanggal_peminjaman'] ?>">
-                  <input type="hidden" name="judul_buku" value="<?= $book['judul_buku'] ?>">
+                  <input type="hidden" name="id_peminjam" value="<?= $pinjam['id_peminjaman'] ?>">
+                  <input type="hidden" name="name" value="<?= $pinjam['nama_peminjam'] ?>">
+                  <input type="hidden" name="date" value="<?= $pinjam['tanggal_peminjaman'] ?>">
+                  <input type="hidden" name="books" value="<?= $pinjam['id_buku'] ?>">
                   <ul class="flex gap-2 justify-center">
-                    <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updatePeminjaman?id=<?= $pinjam['id_peminjaman']?>&nama_peminjam=<?= $pinjam['nama_peminjam']?>&tanggal_peminjaman=<?=$pinjam['tanggal_peminjaman']?>&judul_buku=<?=$book['judul_buku']?>">Update</a></button></li>
-                    <li><button name="delete" class="btn btn-error btn-sm" onclick="confirmDelete(<?= $pinjam['id_peminjaman'] ?>)">Delete</button> </li>
+                    <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updatePinjam? id=<?= $pinjam['id_peminjaman']?>&nama_peminjam=<?= $pinjam['nama_peminjam']?>&tanggal_peminjaman=<?=$pinjam['tanggal_peminjaman']?>&judul_buku=<?=$pinjam['judul_buku']?>">Update</a></button></li>
+                    <li><button type="submit" name="delete" class="btn btn-error btn-sm">Delete</button> </li>
                   </ul>
                 </td>
               </tr>

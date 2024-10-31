@@ -12,19 +12,13 @@ class PeminjamanController extends Controller{
 
     public function index() {
         $peminjaman = $this->model->getDatas();
-        $this->render('index', ['peminjaman' => $peminjaman]);
+        $this->render('peminjaman', ['peminjaman' => $peminjaman]);
     }
     
     public function addPeminjaman() {
         $books = $this->model->getBuku();
 
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-            $date = $_POST['date'];
-
-            if($date > date('Y-m-d')) {
-                $this->render('/newPinjam');
-                return;
-            }
 
             $peminjaman = [$_POST['name'], $_POST['date'], $_POST['books']];
             $this->model->setDatas($peminjaman);
@@ -47,27 +41,27 @@ class PeminjamanController extends Controller{
 
     public function updatePeminjaman(){
         $books = $this->model->getBuku();
-        $id_peminjaman = $_GET['id_peminjaman'];
+        $id_peminjaman = $_GET['id'];
         $name = $_GET['nama_peminjam'];
         $date = $_GET['tanggal_peminjaman'];
-        $books_id = $_GET['id_buku'];
+        $books_id = $_GET['judul_buku'];
 
         $datas = [$id_peminjaman, $name, $date, $books_id];
-
-        $this->render('updatePeminjaman', ['datas' => $datas, 'books' => $books]);
+        
+        var_dump($datas);
+        $this->render('updatePinjam', ['datas' => $datas, 'books' => $books]);
     }
 
     public function postPeminjaman(){
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-            $id_peminjaman = $_POST['id_peminjaman'];
+            $id_peminjaman = $_POST['id_peminjam'];
             $name = $_POST['name'];
             $date = $_POST['date'];
             $books = $_POST['books'];
 
             $data = [$name, $date, $books, $id_peminjaman];
-
+            
             $this->model->updatePeminjaman($data);
-            header("Location: /");
             return;
         }
     }

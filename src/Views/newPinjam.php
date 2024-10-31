@@ -13,15 +13,12 @@
 <body>
     <h1 class="font-semibold self-center text-3xl text-center my-10">Tambah Peminjaman</h1>
 
-    <form method="post" action="/newBook" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl" onsubmit='submitHandler()'>
+    <form method="post" action="/newPinjam" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl" onsubmit='submitHandler()'>
         <label for="name">Nama Peminjam</label>
         <input class="input input-bordered w-full" placeholder="Masukkan Nama" type="text" name="name" id="name" required>
 
         <label for="date">Tanggal Peminjaman</label>
         <input class="input input-bordered w-full" type="date" name="date" id="date" required>
-
-        <label for="year">Judul Buku</label>
-        <input class="input input-bordered w-full" placeholder="Masukkan Tahun Terbit" maxlength="4" inputmode="numeric" type="text" name="year" id="year" required>
 
         <label for="books">Judul Buku</label>
         <select class="select select-bordered" name="books" id="books">

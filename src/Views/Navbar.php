@@ -44,6 +44,8 @@
           <summary>More</summary>
           <ul class="bg-base-100 rounded-t-none p-2 w-max absolute right-0">
             <li><a href="/newBook">Tambah Buku Baru</a></li>
+            <li><a href="/newPinjam">Pinjam Buku</a></li>
+            <li><a href="/peminjaman">Peminjaman</a></li>
             <li><a>Link 2</a></li>
           </ul>
         </details>
