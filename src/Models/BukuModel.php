@@ -35,9 +35,14 @@ class BukuModel extends DB{
         $this->conn->query($sql);
     }
     
-    public function deleteData($id){
-        $sql = "DELETE FROM buku WHERE id_buku = '$id'";
-        $this->conn->query($sql);
+    public function deleteData($id) {
+        $this->conn->query('SET FOREIGN_KEY_CHECKS=0');
+        
+        $query = "DELETE FROM buku WHERE id_buku = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$id]);
+        
+        $this->conn->query('SET FOREIGN_KEY_CHECKS=1');
     }
 
     public function updateData($title, $author, $year, $id_category, $id){

@@ -28,7 +28,7 @@
         </thead>
         <tbody>
           <?php foreach ($books as $book): ?>
-            <form action="/" method="post" id="form">
+            <form action="/" method="post" id="form<?= $book['id_buku'] ?>">
               <tr>
                 <th><?= $no++ ?></th>
                 <td><?= $book['judul_buku'] ?></td>
@@ -43,7 +43,7 @@
                   <input type="hidden" name="nama_kategori" value="<?= $book['nama_kategori'] ?>">
                   <ul class="flex gap-2 justify-center">
                     <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updateData?id=<?= $book['id_buku'] ?>&judul_buku=<?= $book['judul_buku'] ?>&penulis=<?= $book['penulis'] ?>&tahun_terbit=<?= $book['tahun_terbit'] ?>">Update</a></button></li>
-                    <li><button type="button" class="btn btn-error btn-sm" onclick="confirmDelete(this)">Delete</button> </li>
+                    <li><button type="button" class="btn btn-error btn-sm" onclick="confirmDelete('form<?= $book['id_buku'] ?>')">Delete</button> </li>
                   </ul>
                 </td>
               </tr>
@@ -55,8 +55,8 @@
   </main>
 </body>
 <script>
-  function confirmDelete() {
-    const form = document.getElementById('form');
+  function confirmDelete(formID) {
+    const form = document.getElementById(formID);
     const deleteInput = document.createElement('input');
     deleteInput.type = 'hidden';
     deleteInput.name = 'delete';

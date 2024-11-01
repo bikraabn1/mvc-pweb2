@@ -32,7 +32,7 @@ $router->post('/updatePinjam', PeminjamanController::class, 'postPeminjaman');
 
 $router->get('/pengembalian', PengembalianController::class, 'index');
 $router->post('/pengembalian', PengembalianController::class, 'index');
-$router->post('/pengembalian', PengembalianController::class, 'updatePengembalian');
 $router->get('/updatePengembalian', PengembalianController::class, 'updatePengembalian');
+$router->post('/updatePengembalian', PengembalianController::class, 'updatePengembalian');
 
 $router->dispatch();

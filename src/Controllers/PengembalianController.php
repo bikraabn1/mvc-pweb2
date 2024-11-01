@@ -3,41 +3,52 @@
 namespace App\Controllers;
 
 use App\Models\PengembalianModel;
+use App\Models\PeminjamanModel;
 use App\Controller;
 use DateTime;
 
 class PengembalianController extends Controller
 {
     public $PengembalianModel;
+    public $PeminjamanModel;
     public function __construct()
     {
         $this->PengembalianModel = new PengembalianModel();
+        $this->PeminjamanModel = new PeminjamanModel();
     }
 
     public function index()
     {
         if (isset($_GET['id_pinjam'])) {
             $id = $_GET['id_pinjam'];
-            
-            $datas = $this->PengembalianModel->getDatas();
-            $data = $this->PengembalianModel->find($id);
 
-            if ($data) {
-                $this->render('/pengembalian', ['datas' => $datas]); 
+            $existingData = $this->PengembalianModel->findByPeminjamanId($id);
+
+            if ($existingData) {
+                $datas = $this->PengembalianModel->getDatas();
+                $this->render('/pengembalian', ['datas' => $datas]);
                 return;
             }
+
+            $today = new DateTime();
+            $date = $today->format('Y-m-d');
+            $denda = $this->getDenda($date);
+            $newData = [$id, $denda, $date];
+
+            $this->PengembalianModel->setDatas($newData);
         }
 
-        $today = new DateTime();
-        $date = $today->format('Y-m-d');
-        $denda = $this->getDenda($date);
-        $newData = [$id, $denda, $date];
+        if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['delete'])){
+            var_dump($_POST);
+            $id = $_POST['id_peminjam'];
+            $this->PengembalianModel->deleteDatas($id);
+            header("Location: /pengembalian");
+            return;
+        }
 
-        var_dump($newData);
-        $this->PengembalianModel->setDatas($newData);
-        $this->render('/pengembalian', ['datas' => $newData]); 
+        $datas = $this->PengembalianModel->getDatas();
+        $this->render('/pengembalian', ['datas' => $datas]);
     }
-
     public function getDenda($date)
     {
         $today = new DateTime();
@@ -56,14 +67,18 @@ class PengembalianController extends Controller
         }
     }
 
-    public function updatePengembalian(){
-        if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['update'])){
-            var_dump($_POST);
-            $id = $_POST['id_peminjam'];
-            $datas = $this->PengembalianModel->find($id);
-            $this->render('updatePengembalian', ['datas' => $datas]);
+    public function updatePengembalian()
+    {
+        if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update'])){
+            $id_pengembalian = $_POST['id'];
+            $date = $_POST['date'];
+            $name = $_POST['name'];
+            $datas = [$name, $date, $id_pengembalian];
+            $this->PengembalianModel->updateDatas($datas);
+            header('Location: /pengembalian');
         }
+        $id = $_GET['id'];
+        $peminjam = $this->PengembalianModel->getPeminjam();
+        $this->render('/updatePengembalian', ['peminjam' => $peminjam, 'id' => $id]);
     }
-
-
 }

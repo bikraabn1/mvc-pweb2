@@ -40,7 +40,7 @@
                 <td>
                   <input type="hidden" name="id_peminjam" value="<?= $data['id_pengembalian'] ?>">
                   <ul class="flex gap-2 justify-center">
-                    <li><button onclick="returnHandler(dataForm<?= $data['id_peminjaman']?>)" name="update" class="btn btn-success btn-sm">Update</button></li>
+                    <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updatePengembalian?id=<?= $data['id_pengembalian'] ?>&judul_buku=<?= $data['judul_buku'] ?>&penulis=<?= $data['penulis'] ?>&tahun_terbit=<?= $data['tahun_terbit'] ?>">Update</a></button></li>
                     <li><button type="submit" name="delete" class="btn btn-error btn-sm">Delete</li>
                   </ul>
                 </td>
@@ -52,17 +52,4 @@
     </div>
   </main>
 </body>
-<script>
-  const returnHandler = (formId) => {
-    const form = document.getElementById(formId);
-
-    const newInput = document.createElement('input');
-    newInput.name = "update";
-    newInput.type = "hidden";
-
-    form.appendChild(newInput);
-    form.submit();
-  }
-</script>
-
 </html>
