@@ -13,6 +13,7 @@ class PeminjamanModel extends DB{
         $result = $this->conn->query($sql);
         $peminjaman = [];
         while ($row = $result->fetch_assoc()) {
+            $row['is_loan'] = ($row['is_loan'] === "0") ? "Belum Dikembalikan" : "Sudah Dikembalikan";
             $peminjaman[] = $row;
         }
         return $peminjaman;
@@ -28,20 +29,29 @@ class PeminjamanModel extends DB{
         return $peminjaman;
     }
 
+    public function setIsLoan($id){
+        $sql = "UPDATE peminjaman SET is_loan = '1' WHERE id_peminjaman = $id";
+        $this->conn->query($sql);
+    }
+
     public function setDatas($data) {
         $peminjaman = implode("', '", $data);
         $sql = "INSERT INTO peminjaman (nama_peminjam, tanggal_peminjaman, id_buku) VALUES ('$peminjaman')";
         $this->conn->query($sql);
     }
 
-    public function deletePeminjaman($id_peminjaman){
-        $sql = "DELETE FROM peminjaman WHERE id_peminjaman = '$id_peminjaman'";
-        $this->conn->query($sql);
+    public function deletePeminjaman($id) {
+        $this->conn->query('SET FOREIGN_KEY_CHECKS=0');
+        
+        $query = "DELETE FROM peminjaman WHERE id_peminjaman = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$id]);
+        
+        $this->conn->query('SET FOREIGN_KEY_CHECKS=1');
     }
 
-    public function updatePeminjaman($data){
-        $sql = "UPDATE peminjaman SET nama_peminjam = '" . $data[0] . "', tanggal_peminjaman = '" . $data[1]. "', id_buku = '". $data[2] ."' WHERE id_peminjaman = '" .$data[3]. "'";
+    public function updatePeminjaman($nama, $tgl , $id_buku, $id){
+        $sql = "UPDATE peminjaman SET nama_peminjam = '". $nama ."', tanggal_peminjaman = '". $tgl ."', id_buku = '". $id_buku ."' WHERE id_peminjaman = '". $id."'";
         $this->conn->query($sql);
-        echo "hello world";
     }
 }

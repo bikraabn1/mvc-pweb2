@@ -1,58 +1,69 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 use App\Models\PengembalianModel;
 use App\Controller;
+use DateTime;
 
-class PengembalianController extends Controller {
+class PengembalianController extends Controller
+{
     public $PengembalianModel;
-    public function __construct(){
+    public function __construct()
+    {
         $this->PengembalianModel = new PengembalianModel();
     }
 
-    public function index(){
-        $data = $this->PengembalianModel->getDatas();
-        $this->render('/pengembalian', ['data' => $data]);
+    public function index()
+    {
+        if (isset($_GET['id_pinjam'])) {
+            $id = $_GET['id_pinjam'];
+            
+            $datas = $this->PengembalianModel->getDatas();
+            $data = $this->PengembalianModel->find($id);
+
+            if ($data) {
+                $this->render('/pengembalian', ['datas' => $datas]); 
+                return;
+            }
+        }
+
+        $today = new DateTime();
+        $date = $today->format('Y-m-d');
+        $denda = $this->getDenda($date);
+        $newData = [$id, $denda, $date];
+
+        var_dump($newData);
+        $this->PengembalianModel->setDatas($newData);
+        $this->render('/pengembalian', ['datas' => $newData]); 
     }
 
-    public function addDatas(){
-        $pengembalian = $this->PengembalianModel->getDatas();
-        $this->render('/newPengembalian');
+    public function getDenda($date)
+    {
+        $today = new DateTime();
+        $now = $today->format('Y-m-d');
 
-        if(isset($_POST['submit']))
-        $pengembalian = [$_POST['id_pengembalian']];
-        $this->PengembalianModel->setDatas($pengembalian);
-    }
+        $tanggalAwal = strtotime($now);
+        $tanggalAkhir = strtotime($date);
 
-    public function deleteDatas(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
-            $id = $_POST['id_pengembalian'];
-            $this->PengembalianModel->deleteData($id);
-            header('Location: /pengembalian');
+        $selisihDetik = $tanggalAkhir - $tanggalAwal;
+        $selisihHari = $selisihDetik / (60 * 60 * 24);
+
+        if ($selisihHari <= 14) {
+            return 0;
+        } else {
+            return $selisihHari * 500;
         }
     }
 
-    public function updateDatas(){
-        $id = $_GET['id'];
-        $cat = $_GET['cat'];
-
-        $data = [$id, $cat]; 
-
-        $this->render('updatepengembalian', ['data' => $data]);
-    }
-
-    public function addPengembalian(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-            $id = $_POST[''];
-            $cat = $_POST[''];
-
-            $datas = [$id, $cat];
-
-            $this->KategoriModel->updateDatas($datas);
-            $this->render('newPengembalian', ['datas' => $this->PengembalianModel->getDatas()]);
-            header(header: 'Location: /pengembalian');
-            return;
+    public function updatePengembalian(){
+        if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['update'])){
+            var_dump($_POST);
+            $id = $_POST['id_peminjam'];
+            $datas = $this->PengembalianModel->find($id);
+            $this->render('updatePengembalian', ['datas' => $datas]);
         }
-        $this->render('newPengembalian', ['datas' => $this->PengembalianModel->getDatas()]);
     }
+
 
 }

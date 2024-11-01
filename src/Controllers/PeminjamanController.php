@@ -2,9 +2,11 @@
 
 use App\Controller;
 use App\Models\PeminjamanModel;
+use App\Models\PengembalianModel;
 
 class PeminjamanController extends Controller{
     public $model;
+    public $pengembalianModel;
 
     public function __construct(){
         $this->model = new PeminjamanModel();
@@ -22,34 +24,32 @@ class PeminjamanController extends Controller{
 
             $peminjaman = [$_POST['name'], $_POST['date'], $_POST['books']];
             $this->model->setDatas($peminjaman);
-            header("Location: /");
+            header("Location: /peminjaman");
             return;
         }
 
         $this->render('/newPinjam', ['books' => $books]);
-
-        
     }
 
-    public function deletePeminjaman() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
-            $id_peminjaman = $_POST['id_peminjaman'];
-            $this->model->deletePeminjaman($id_peminjaman);
-            header("Location: /");
+    public function handlePeminjaman() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['delete'])) {
+                $id_peminjaman = $_POST['id_peminjaman'];
+                $this->model->deletePeminjaman($id_peminjaman);
+                header("Location: /peminjaman");
+                exit();
+            } 
+            else if (isset($_POST['return'])) {
+                $id = $_POST['id_peminjaman'];
+                $date = $_POST['date'];
+                $this->model->setIsLoan($id);
+                header("Location: /pengembalian?id_pinjam=$id&date=$date");
+                exit();
+            }
         }
-    }
-
-    public function updatePeminjaman(){
-        $books = $this->model->getBuku();
-        $id_peminjaman = $_GET['id'];
-        $name = $_GET['nama_peminjam'];
-        $date = $_GET['tanggal_peminjaman'];
-        $books_id = $_GET['judul_buku'];
-
-        $datas = [$id_peminjaman, $name, $date, $books_id];
         
-        var_dump($datas);
-        $this->render('updatePinjam', ['datas' => $datas, 'books' => $books]);
+        $peminjaman = $this->model->getDatas();
+        $this->render('peminjaman', ['peminjaman' => $peminjaman]);
     }
 
     public function postPeminjaman(){
@@ -58,10 +58,9 @@ class PeminjamanController extends Controller{
             $name = $_POST['name'];
             $date = $_POST['date'];
             $books = $_POST['books'];
-
-            $data = [$name, $date, $books, $id_peminjaman];
             
-            $this->model->updatePeminjaman($data);
+            $this->model->updatePeminjaman($name, $date, $books, $id_peminjaman);
+            header("Location: /peminjaman");
             return;
         }
     }

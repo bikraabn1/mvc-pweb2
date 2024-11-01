@@ -22,13 +22,17 @@ $router->get('/updatekategori', KategoriController::class, 'updateCategory');
 $router->post('/updatekategori', KategoriController::class, 'postCategory');
 
 $router->get('/peminjaman',  PeminjamanController::class, 'index');
+$router->post('/peminjaman',  PeminjamanController::class, 'handlePeminjaman');
+
 $router->get('/newPinjam', PeminjamanController::class, 'addPeminjaman');
 $router->post('/newPinjam', PeminjamanController::class, 'addPeminjaman');
+
 $router->get('/updatePinjam', PeminjamanController::class, 'updatePeminjaman');
 $router->post('/updatePinjam', PeminjamanController::class, 'postPeminjaman');
 
 $router->get('/pengembalian', PengembalianController::class, 'index');
-$router->get('/newPengembalian', PengembalianController::class, 'addPengembalian');
-$router->post('/newPengembalian', PengembalianController::class, 'addDatas');
+$router->post('/pengembalian', PengembalianController::class, 'index');
+$router->post('/pengembalian', PengembalianController::class, 'updatePengembalian');
+$router->get('/updatePengembalian', PengembalianController::class, 'updatePengembalian');
 
 $router->dispatch();

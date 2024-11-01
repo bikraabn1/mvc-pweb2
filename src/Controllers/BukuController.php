@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controllers;
-
 use App\Controller;
 use App\Models\BukuModel;
 
@@ -16,11 +14,7 @@ class BukuController extends Controller
     public function index()
     {
         $books = $this->model->getDatas();
-        if(sizeof($books)  > 0){
-            $this->render('index', ['books' => $books]);
-            return;
-        }
-        $this->render('indexnotable');
+        $this->render('index', ['books' => $books]);
     }
 
     public function addBook()
@@ -74,9 +68,8 @@ class BukuController extends Controller
         $title = $_GET['judul_buku'];
         $author = $_GET['penulis'];
         $getYear = $_GET['tahun_terbit'];
-        $category_name = $_GET['nama_kategori'];
 
-        $datas = [$id, $title, $author, $getYear, $category_name];
+        $datas = [$id, $title, $author, $getYear];
 
         $this->render('updateData', ['datas' => $datas, 'category' => $category]);
     }
@@ -90,9 +83,7 @@ class BukuController extends Controller
             $year = $_POST['year'];
             $category = $_POST['category'];
 
-            $data = [$title, $author, $year, $category, $id];
-
-            $this->model->updateData($data);
+            $this->model->updateData($title, $author, $year, $category, $id);
             header("Location: /");
             return;
         }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 <?php include "Navbar.php" ?>
+
 <body>
     <h1 class="font-semibold self-center text-3xl text-center my-10">Ubah Kategori Buku</h1>
-    
+
     <form method="post" action="/updatekategori" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl">
         <input type="hidden" name="id_kategori" value="<?= $datas[0] ?>">
 
@@ -40,7 +42,7 @@
             icon: 'success',
             confirmButtonText: 'OK'
         })
-        
+
     }
 </script>
 

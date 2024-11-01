@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="output.css">
 </head>
 <?php include "Navbar.php" ?>
-
+<?php var_dump($datas) ?>
 <body>
     <h1 class="font-semibold self-center text-3xl text-center my-10">Edit Data Buku</h1>
 
@@ -25,12 +25,6 @@
         <input class="input input-bordered w-full" value="<?= $datas[3] ?>" placeholder="Masukkan Tahun Terbit" maxlength="4" inputmode="numeric" type="text" name="year" id="year" required>
 
         <label for="category">Kategori Buku</label>
-        <select class="select select-bordered" name="category" id="category">
-            <?php foreach ($category as $data) : ?>
-                <option value="<?= $data['id_kategori'] ?>"> <?= $data['nama_kategori'] ?> </option>
-            <?php endforeach ?>
-        </select>
-
         <button class="btn w-fit self-center my-5" type="submit" name="update">Update Buku</button>
     </form>
 </body>

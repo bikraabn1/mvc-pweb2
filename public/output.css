@@ -948,6 +948,18 @@ html {
     }
   }
 
+  .btn-outline.btn-info:hover {
+    --tw-text-opacity: 1;
+    color: var(--fallback-inc,oklch(var(--inc)/var(--tw-text-opacity)));
+  }
+
+  @supports (color: color-mix(in oklab, black, black)) {
+    .btn-outline.btn-info:hover {
+      background-color: color-mix(in oklab, var(--fallback-in,oklch(var(--in)/1)) 90%, black);
+      border-color: color-mix(in oklab, var(--fallback-in,oklch(var(--in)/1)) 90%, black);
+    }
+  }
+
   .btn-outline.btn-error:hover {
     --tw-text-opacity: 1;
     color: var(--fallback-erc,oklch(var(--erc)/var(--tw-text-opacity)));
@@ -1200,6 +1212,10 @@ html {
     border-color: var(--btn-color, var(--fallback-b2));
   }
 
+  .btn-info {
+    --btn-color: var(--fallback-in);
+  }
+
   .btn-success {
     --btn-color: var(--fallback-su);
   }
@@ -1215,6 +1231,11 @@ html {
     border-color: color-mix(in oklab, var(--fallback-su,oklch(var(--su)/1)) 90%, black);
   }
 
+  .btn-outline.btn-info.btn-active {
+    background-color: color-mix(in oklab, var(--fallback-in,oklch(var(--in)/1)) 90%, black);
+    border-color: color-mix(in oklab, var(--fallback-in,oklch(var(--in)/1)) 90%, black);
+  }
+
   .btn-outline.btn-error.btn-active {
     background-color: color-mix(in oklab, var(--fallback-er,oklch(var(--er)/1)) 90%, black);
     border-color: color-mix(in oklab, var(--fallback-er,oklch(var(--er)/1)) 90%, black);
@@ -1228,6 +1249,10 @@ html {
 }
 
 @supports (color: oklch(0% 0 0)) {
+  .btn-info {
+    --btn-color: var(--in);
+  }
+
   .btn-success {
     --btn-color: var(--su);
   }
@@ -1235,6 +1260,12 @@ html {
   .btn-error {
     --btn-color: var(--er);
   }
+}
+
+.btn-info {
+  --tw-text-opacity: 1;
+  color: var(--fallback-inc,oklch(var(--inc)/var(--tw-text-opacity)));
+  outline-color: var(--fallback-in,oklch(var(--in)/1));
 }
 
 .btn-success {
@@ -1285,6 +1316,16 @@ html {
 .btn-outline.btn-success.btn-active {
   --tw-text-opacity: 1;
   color: var(--fallback-suc,oklch(var(--suc)/var(--tw-text-opacity)));
+}
+
+.btn-outline.btn-info {
+  --tw-text-opacity: 1;
+  color: var(--fallback-in,oklch(var(--in)/var(--tw-text-opacity)));
+}
+
+.btn-outline.btn-info.btn-active {
+  --tw-text-opacity: 1;
+  color: var(--fallback-inc,oklch(var(--inc)/var(--tw-text-opacity)));
 }
 
 .btn-outline.btn-error {
@@ -1884,6 +1925,10 @@ html {
   right: 0px;
 }
 
+.z-\[9999\] {
+  z-index: 9999;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -1932,15 +1977,8 @@ html {
   display: grid;
 }
 
-<<<<<<< HEAD
 .hidden {
   display: none;
-}
-
-=======
->>>>>>> f6cf18de9e9bd77660c333d2cd54c2f73697ca21
-.h-\[20rem\] {
-  height: 20rem;
 }
 
 .w-\[70\%\] {
@@ -1997,21 +2035,6 @@ html {
   justify-content: space-between;
 }
 
-.gap-10 {
-  gap: 2.5rem;
-<<<<<<< HEAD
-}
-
-.gap-2 {
-  gap: 0.5rem;
-}
-
-.gap-2 {
-  gap: 0.5rem;
-=======
->>>>>>> f6cf18de9e9bd77660c333d2cd54c2f73697ca21
-}
-
 .gap-2 {
   gap: 0.5rem;
 }
@@ -2034,14 +2057,8 @@ html {
   border-radius: 1rem;
 }
 
-<<<<<<< HEAD
-.rounded-lg {
-  border-radius: 0.5rem;
-=======
-.rounded-t-none {
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
->>>>>>> f6cf18de9e9bd77660c333d2cd54c2f73697ca21
+.rounded-md {
+  border-radius: 0.375rem;
 }
 
 .border {
@@ -2102,24 +2119,11 @@ html {
   line-height: 1.75rem;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .font-semibold {
   font-weight: 600;
 }
 
-.italic {
-  font-style: italic;
-}
-
-.text-primary {
+.text-base-content {
   --tw-text-opacity: 1;
-  color: var(--fallback-p,oklch(var(--p)/var(--tw-text-opacity)));
-}
-
-.underline {
-  text-decoration-line: underline;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
 }

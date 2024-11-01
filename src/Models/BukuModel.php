@@ -22,11 +22,11 @@ class BukuModel extends DB{
         $sql =  "SELECT * from kategori_buku";
 
         $result = $this->conn->query($sql);
-        $books = [];
+        $category = [];
         while ($row = $result->fetch_assoc()) {
-            $books[] = $row; 
+            $category[] = $row; 
         }
-        return $books;
+        return $category;
     }
 
     public function setDatas($data){
@@ -40,8 +40,8 @@ class BukuModel extends DB{
         $this->conn->query($sql);
     }
 
-    public function updateData($data){
-        $sql = "UPDATE buku SET judul_buku = '". $data[0] ."', penulis = '" .$data[1]. "', tahun_terbit = '". $data[2] ."' , id_kategori = '". $data[3] ."' WHERE id_buku = '" .$data[4]. "'";
+    public function updateData($title, $author, $year, $id_category, $id){
+        $sql = "UPDATE buku SET judul_buku = '". $title ."', penulis = '" . $author . "', tahun_terbit = '". $year ."' , id_kategori = '". $id_category ."' WHERE id_buku = '" . $id . "'";
         $this->conn->query($sql);
     }
 }

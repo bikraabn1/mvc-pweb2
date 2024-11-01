@@ -11,7 +11,7 @@
 <?php include "Navbar.php" ?>
 
 <body>
-    <h1 class="font-semibold self-center text-3xl text-center my-10">Tambah Peminjaman</h1>
+    <h1 class="font-semibold self-center text-3xl text-center my-10">Pinjam Buku</h1>
 
     <form method="post" action="/newPinjam" class="flex flex-col w-[70%] mx-auto mt-30 p-5 gap-2 border rounded-2xl" onsubmit='submitHandler()'>
         <label for="name">Nama Peminjam</label>
@@ -30,4 +30,5 @@
         <button class="btn w-fit self-center my-5" type="submit" name="submit" id="submit">Tambah Peminjaman</button>
     </form>
 </body>
+
 </html>

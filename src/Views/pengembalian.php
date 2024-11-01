@@ -15,34 +15,33 @@
   <main>
     <h1 class="text-center text-3xl font-semibold my-14">List Pengembalian Buku</h1>
     <div class="overflow-x-auto">
-      <table class="table table-md border border-1 w-[80%] mx-auto text-center ">
+      <table class="table table-md border border-1 w-[80%] mx-auto text-center">
         <thead>
           <tr>
             <th>No</th>
-            <td>Tanggal Pengambalian</td>
-            <td>Tanggal Peminjaman</td>
             <td>Nama Peminjam</td>
+            <td>Tanggal Peminjaman</td>
+            <td>Tanggal Pengembalian</td>
             <td>Jumlah Denda</td>
+            <td>Judul Buku</td>
             <td>Modifier</td>
           </tr>
         </thead>
         <tbody>
-          <?php foreach($data as $d): ?>
-            <tr>
-              <th><?= $no++ ?></th>
-              <td><?= $d['tanggal_pengembalian'] ?></td>
-              <td><?= $d['tanggal_peminjaman'] ?></td>
-              <td><?= $d['nama_peminjam'] ?></td>
-              <td><?= $d['jumlah_denda'] ?></td>
-              <td>
-                  <input type="hidden" name="id_buku" value="<?= $book['id_buku'] ?>">
-                  <input type="hidden" name="judul_buku" value="<?= $book['judul_buku'] ?>">
-                  <input type="hidden" name="penulis" value="<?= $book['penulis'] ?>">
-                  <input type="hidden" name="tahun_terbit" value="<?= $book['tahun_terbit'] ?>">
-                  <input type="hidden" name="nama_kategori" value="<?= $book['nama_kategori'] ?>">
+          <?php foreach ($datas as $data): ?>
+            <form method="post" action="/pengembalian" id="dataForm<?= $data['id_peminjaman']?>">
+              <tr>
+                <th><?= $no++ ?></th>
+                <td><?= $data['nama_peminjam'] ?></td>
+                <td><?= $data['tanggal_peminjaman'] ?></td>
+                <td><?= $data['tanggal_pengembalian'] ?></td>
+                <td><?= $data['jumlah_denda'] ?></td>
+                <td><?= $data['judul_buku'] ?></td>
+                <td>
+                  <input type="hidden" name="id_peminjam" value="<?= $data['id_pengembalian'] ?>">
                   <ul class="flex gap-2 justify-center">
-                    <li><button type="submit" name="update" class="btn btn-success btn-sm"><a href="/updateData?id=<?= $book['id_buku']?>&judul_buku=<?= $book['judul_buku']?>&penulis=<?=$book['penulis']?>&tahun_terbit=<?=$book['tahun_terbit']?>&nama_kategori=<?=$book['nama_kategori']?>">Update</a></button></li>
-                    <li><button type="submit" name="delete" class="btn btn-error btn-sm" onclick="confirmDelete(this)">Delete</button> </li>
+                    <li><button onclick="returnHandler(dataForm<?= $data['id_peminjaman']?>)" name="update" class="btn btn-success btn-sm">Update</button></li>
+                    <li><button type="submit" name="delete" class="btn btn-error btn-sm">Delete</li>
                   </ul>
                 </td>
               </tr>
@@ -53,28 +52,17 @@
     </div>
   </main>
 </body>
-<script> 
-    // function confirmDelete(button) {
-    //     const form = button.closest('form'); // Get the closest form to the button
-    //     const deleteInput = document.createElement('input');
-    //     deleteInput.type = 'hidden';
-    //     deleteInput.name = 'delete';
-    //     deleteInput.value = 'delete';
-        
-    //     Swal.fire({
-    //       title: 'Are you sure?',
-    //       text: "You won't be able to revert this!",
-    //       icon: 'warning',
-    //       showCancelButton: true,
-    //       confirmButtonColor: '#3085d6',
-    //       cancelButtonColor: '#d33',
-    //       confirmButtonText: 'Yes, delete it!'
-    //     }).then((result) => {
-    //       if (result.isConfirmed) {
-    //         form.appendChild(deleteInput);
-    //         form.submit();
-    //       }
-    //     });
-    // }
+<script>
+  const returnHandler = (formId) => {
+    const form = document.getElementById(formId);
+
+    const newInput = document.createElement('input');
+    newInput.name = "update";
+    newInput.type = "hidden";
+
+    form.appendChild(newInput);
+    form.submit();
+  }
 </script>
+
 </html>
