@@ -1932,8 +1932,8 @@ html {
   display: grid;
 }
 
-.h-\[20rem\] {
-  height: 20rem;
+.hidden {
+  display: none;
 }
 
 .w-\[70\%\] {
@@ -1988,10 +1988,6 @@ html {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.gap-10 {
-  gap: 2.5rem;
 }
 
 .gap-2 {
@@ -2074,24 +2070,6 @@ html {
   line-height: 1.75rem;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .font-semibold {
   font-weight: 600;
-}
-
-.italic {
-  font-style: italic;
-}
-
-.text-primary {
-  --tw-text-opacity: 1;
-  color: var(--fallback-p,oklch(var(--p)/var(--tw-text-opacity)));
-}
-
-.underline {
-  text-decoration-line: underline;
 }

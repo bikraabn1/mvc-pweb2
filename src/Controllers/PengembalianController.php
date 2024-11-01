@@ -3,7 +3,7 @@
 use App\Models\PengembalianModel;
 use App\Controller;
 
-class PengembalianController extends Controller {
+class PengembalianController extends Controller{
     public $PengembalianModel;
     public function __construct(){
         $this->PengembalianModel = new PengembalianModel();
@@ -31,14 +31,21 @@ class PengembalianController extends Controller {
         }
     }
 
-    public function updateDatas(){
+    public function updatePengembalian()
+    {
+        if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update'])){
+            $id_pengembalian = $_POST['id'];
+            $date = $_POST['date'];
+            $name = $_POST['name'];
+            $datas = [$name, $date, $id_pengembalian];
+            $this->PengembalianModel->updateDatas($datas);
+            header('Location: /pengembalian');
+        }
         $id = $_GET['id'];
-        $cat = $_GET['cat'];
-
-        $data = [$id, $cat]; 
-
-        $this->render('updatepengembalian', ['data' => $data]);
+        $peminjam = $this->PengembalianModel->getPeminjam();
+        $this->render('/updatePengembalian', ['peminjam' => $peminjam, 'id' => $id]);
     }
+
 
     public function addPengembalian(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {

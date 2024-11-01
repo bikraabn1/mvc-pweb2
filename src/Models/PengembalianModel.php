@@ -8,7 +8,7 @@ class PengembalianModel extends DB {
     }
 
     public function getDatas() {
-        $sql = "SELECT * FROM pengembalian JOIN peminjaman ON pengembalian.id_peminjaman = peminjaman.id_peminjaman";
+        $sql = "SELECT * FROM pengembalian JOIN peminjaman ON pengembalian.id_peminjaman = peminjaman.id_peminjaman JOIN buku ON peminjaman.id_buku = buku.id_buku;";
         $result = $this->conn->query($sql);
         $pengembalian = [];
         while ($row = $result->fetch_assoc()) {
@@ -18,20 +18,25 @@ class PengembalianModel extends DB {
     }
 
     public function setDatas($data) {
-        $sql = "INSERT INTO pengembalian (id_peminjaman, jumlah_denda, tanggal_pengembalian) VALUES ('" . $data['id_peminjaman'] . "', '" . $data['jumlah_denda'] . "', '" . $data['tanggal_pengembalian'] . "')";
-        $this->conn->query($sql);
+        $sql = "INSERT INTO pengembalian (id_peminjaman, jumlah_denda, tanggal_pengembalian) VALUES (?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$data[0], $data[1], $data[2]]);
     }
     
     public function deleteDatas($id) {
-        $sql = "DELETE FROM pengembalian WHERE id_pengembalian = '$id'";
-        $this->conn->query($sql);
+        $this->conn->query('SET FOREIGN_KEY_CHECKS=0');
+        
+        $query = "DELETE FROM pengembalian WHERE id_pengembalian = '$id'";
+        $this->conn->query($query);
+        
+        $this->conn->query('SET FOREIGN_KEY_CHECKS=1');
     }
 
     public function updateDatas($data) {
-        $sql = "UPDATE pengembalian SET id_peminjaman = '" . $data['id_peminjaman'] . "', jumlah_denda = '" . $data['jumlah_denda'] . "', tanggal_pengembalian = '" . $data['tanggal_pengembalian'] . "' WHERE id_pengembalian = '" . $data['id_pengembalian'] . "'";
-        $this->conn->query($sql);
+        $sql = "UPDATE pengembalian SET id_peminjaman = ?, tanggal_pengembalian = ? WHERE id_pengembalian = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$data[0], $data[1], $data[2]]);
     }
-
 
 }
     
